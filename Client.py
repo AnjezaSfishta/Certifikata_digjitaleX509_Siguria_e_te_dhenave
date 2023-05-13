@@ -1,3 +1,10 @@
+import socket as soct
+import ssl
+from cryptography.fernet import Fernet
+import base64
+import sys
+import hashlib
+
 def sendMessage(message, socket):
    socket.send(message)
 
