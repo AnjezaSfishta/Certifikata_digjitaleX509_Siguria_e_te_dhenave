@@ -33,4 +33,20 @@ serverSocket.bind(('127.0.0.1', serverPort))
 serverSocket.listen(5)
 print("Socket is listening")
 client, addr = serverSocket.accept()
+while True:
+   print('Received connection from: ', addr)
+   key1 = hashlib.sha256()
+   key1.update(soct.gethostname().encode('utf-8'))
+   key2 = key1.hexdigest()
+   key2 = key2[:32]
+   key3 = base64.b64encode(key2.encode('utf-8'))
+   cipher_suite = Fernet(key3)
+   recieved = client.recv(1024)
+   if not recieved:
+       break
+   decrpyted = cipher_suite.decrypt(recieved)
+   print("\n>>Message sent from client (encrypted):", recieved)
+
+
+
 
