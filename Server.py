@@ -45,7 +45,19 @@ while True:
    if not recieved:
        break
    decrpyted = cipher_suite.decrypt(recieved)
-   print("\n>>Message sent from client (encrypted):", recieved)
+    print("\n>>Message sent from client (encrypted):", recieved)
+    print(">>Decrypted message sent from client:", decrpyted.decode('utf-8'))
+   if decrpyted.decode('utf-8') == "bye":
+       break
+   message = input('Enter message for client: ')
+   encoded_text = cipher_suite.encrypt(message.encode('utf-8'))
+   client.send(encoded_text)
+
+
+client.close()
+
+
+
 
 
 
